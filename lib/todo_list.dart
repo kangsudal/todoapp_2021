@@ -59,6 +59,9 @@ class TodoList extends StatelessWidget {
               context: context,
               builder: (BuildContext builder) {
                 return SimpleDialog(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
                   title: Row(
                     children: [
                       Text("Add todo"),
