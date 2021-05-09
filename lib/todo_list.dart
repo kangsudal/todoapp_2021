@@ -30,7 +30,10 @@ class TodoList extends StatelessWidget {
                         color: Theme.of(context).primaryColor,
                         shape: BoxShape.circle,
                       ),
-                      child: Icon(Icons.check, color: Colors.white,),
+                      child: Icon(
+                        Icons.check,
+                        color: Colors.white,
+                      ),
                     ),
                     title: Text(
                       "Todo title",
@@ -51,7 +54,26 @@ class TodoList extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         backgroundColor: Theme.of(context).primaryColor,
-        onPressed: () {},
+        onPressed: () {
+          showDialog(
+              context: context,
+              builder: (BuildContext builder) {
+                return SimpleDialog(
+                  title: Row(
+                    children: [
+                      Text("Add todo"),
+                      Spacer(),
+                      IconButton(
+                          icon: Icon(
+                            Icons.cancel,
+                            color: Colors.pink,
+                          ),
+                          onPressed: () {})
+                    ],
+                  ),
+                );
+              });
+        },
       ),
     );
   }
