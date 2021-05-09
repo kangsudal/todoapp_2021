@@ -68,9 +68,17 @@ class TodoList extends StatelessWidget {
                             Icons.cancel,
                             color: Colors.pink,
                           ),
-                          onPressed: () {})
+                          onPressed: () {
+                            return Navigator.pop(context);
+                          })
                     ],
                   ),
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width*0.8,
+                      height: MediaQuery.of(context).size.height*0.6,
+                    )
+                  ],
                 );
               });
         },
