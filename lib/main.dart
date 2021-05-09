@@ -10,6 +10,7 @@ class MyApp extends StatelessWidget{
       debugShowCheckedModeBanner: false,
       home: TodoList(),
       theme: ThemeData(
+        scaffoldBackgroundColor: Colors.deepPurpleAccent[200],
         primarySwatch: Colors.teal,
       ),
     );
