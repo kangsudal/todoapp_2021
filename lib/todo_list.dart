@@ -23,12 +23,14 @@ class TodoList extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return ListTile(
                     leading: Container(
-                      height: 25,
-                      width: 25,
+                      padding: EdgeInsets.all(2),
+                      height: 30,
+                      width: 30,
                       decoration: BoxDecoration(
                         color: Theme.of(context).primaryColor,
                         shape: BoxShape.circle,
                       ),
+                      child: Icon(Icons.check, color: Colors.white,),
                     ),
                     title: Text(
                       "Todo title",
@@ -45,6 +47,7 @@ class TodoList extends StatelessWidget {
           ),
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         backgroundColor: Theme.of(context).primaryColor,
