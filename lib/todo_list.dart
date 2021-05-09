@@ -8,10 +8,14 @@ class TodoList extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.all(25),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 "All todos",
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
               ),
               Divider(),
               SizedBox(height: 20),
@@ -26,7 +30,12 @@ class TodoList extends StatelessWidget {
                         shape: BoxShape.circle,
                       ),
                     ),
-                    title: Text("Todo title"),
+                    title: Text(
+                      "Todo title",
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
                   );
                 },
                 shrinkWrap: true,
@@ -35,6 +44,11 @@ class TodoList extends StatelessWidget {
             ],
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        backgroundColor: Theme.of(context).primaryColor,
+        onPressed: () {},
       ),
     );
   }
