@@ -18,6 +18,14 @@ class TodoList extends StatelessWidget {
               ListView.builder(
                 itemBuilder: (context, index) {
                   return ListTile(
+                    leading: Container(
+                      height: 25,
+                      width: 25,
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).primaryColor,
+                        shape: BoxShape.circle,
+                      ),
+                    ),
                     title: Text("Todo title"),
                   );
                 },
