@@ -59,6 +59,10 @@ class TodoList extends StatelessWidget {
               context: context,
               builder: (BuildContext builder) {
                 return SimpleDialog(
+                  contentPadding: EdgeInsets.symmetric(
+                    horizontal: 25,
+                    vertical: 20,
+                  ), //입력창 가장자리간격
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -77,10 +81,33 @@ class TodoList extends StatelessWidget {
                     ],
                   ),
                   children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width*0.8,
-                      height: MediaQuery.of(context).size.height*0.6,
-                    )
+                    Divider(),
+                    TextFormField(
+                      style: TextStyle(),
+                      autofocus: true,
+                      decoration: InputDecoration(
+                        hintText: "eg. exercise",
+                        // hintStyel: TextStyle(color: Colors.white70),
+                        border: InputBorder.none,
+                      ),
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      height: 50, //MediaQuery.of(context).size.height * 0.6,
+                      child: TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          "Add",
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                        style: TextButton.styleFrom(
+                          backgroundColor: Theme.of(context).primaryColor,
+                          // textStyle: TextStyle(color:Colors.white,),
+                        ),
+                      ),
+                    ),
                   ],
                 );
               });
