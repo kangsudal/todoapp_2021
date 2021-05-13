@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 
-class TodoList extends StatelessWidget {
+class TodoList extends StatefulWidget {
+  @override
+  _TodoListState createState() => _TodoListState();
+}
+
+class _TodoListState extends State<TodoList> {
+  bool isComplete = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,6 +29,12 @@ class TodoList extends StatelessWidget {
               ListView.separated(
                 itemBuilder: (context, index) {
                   return ListTile(
+                    onTap: (){
+                      setState(() {
+                        isComplete = !isComplete;
+                        // print(isComplete);
+                      });
+                    },
                     leading: Container(
                       padding: EdgeInsets.all(2),
                       height: 30,
@@ -30,10 +43,11 @@ class TodoList extends StatelessWidget {
                         color: Theme.of(context).primaryColor,
                         shape: BoxShape.circle,
                       ),
-                      child: Icon(
+                      child: isComplete?
+                      Icon(
                         Icons.check,
                         color: Colors.white,
-                      ),
+                      ):Container(),
                     ),
                     title: Text(
                       "Todo title",
