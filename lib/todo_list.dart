@@ -17,9 +17,9 @@ class TodoList extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     color: Colors.white),
               ),
-              Divider(),
+              Divider( color: Colors.grey[600], ),
               SizedBox(height: 20),
-              ListView.builder(
+              ListView.separated(
                 itemBuilder: (context, index) {
                   return ListTile(
                     leading: Container(
@@ -45,6 +45,11 @@ class TodoList extends StatelessWidget {
                 },
                 shrinkWrap: true,
                 itemCount: 5,
+                separatorBuilder: (BuildContext context, int index) {
+                  return Divider(
+                    color: Colors.grey[800],
+                  );
+                },
               )
             ],
           ),
