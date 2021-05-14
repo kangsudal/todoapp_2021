@@ -119,6 +119,7 @@ class _TodoListState extends State<TodoList> {
                         onPressed: () {
                           if(todoTitleController.text.isNotEmpty){
                             print(todoTitleController.text);
+                            Navigator.pop(context);
                           }
                         },
                         child: Text(
