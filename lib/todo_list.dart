@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
 
-class TodoList extends StatelessWidget {
+class TodoList extends StatefulWidget {
+  @override
+  _TodoListState createState() => _TodoListState();
+}
+
+class _TodoListState extends State<TodoList> {
+  bool isComplete = false;
+  TextEditingController todoTitleController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,34 +25,58 @@ class TodoList extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     color: Colors.white),
               ),
-              Divider(),
+              Divider( color: Colors.grey[600], ),
               SizedBox(height: 20),
-              ListView.builder(
+              ListView.separated(
                 itemBuilder: (context, index) {
-                  return ListTile(
-                    leading: Container(
-                      padding: EdgeInsets.all(2),
-                      height: 30,
-                      width: 30,
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).primaryColor,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Icon(
-                        Icons.check,
-                        color: Colors.white,
-                      ),
+                  return Dismissible(
+                    key: Key(index.toString(),),
+                    background: Container(
+                      padding: EdgeInsets.only(left: 20),
+                      alignment: Alignment.centerLeft,
+                      child: Icon(Icons.delete),
+                      color: Colors.orangeAccent,
                     ),
-                    title: Text(
-                      "Todo title",
-                      style: TextStyle(
-                        color: Colors.white,
+                    onDismissed: (direction){
+                      print("removed");
+                    },
+                    child: ListTile(
+                      onTap: (){
+                        setState(() {
+                          isComplete = !isComplete;
+                          // print(isComplete);
+                        });
+                      },
+                      leading: Container(
+                        padding: EdgeInsets.all(2),
+                        height: 30,
+                        width: 30,
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).primaryColor,
+                          shape: BoxShape.circle,
+                        ),
+                        child: isComplete?
+                        Icon(
+                          Icons.check,
+                          color: Colors.white,
+                        ):Container(),
+                      ),
+                      title: Text(
+                        "Todo title",
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   );
                 },
                 shrinkWrap: true,
                 itemCount: 5,
+                separatorBuilder: (BuildContext context, int index) {
+                  return Divider(
+                    color: Colors.grey[800],
+                  );
+                },
               )
             ],
           ),
@@ -59,6 +91,10 @@ class TodoList extends StatelessWidget {
               context: context,
               builder: (BuildContext builder) {
                 return SimpleDialog(
+                  contentPadding: EdgeInsets.symmetric(
+                    horizontal: 25,
+                    vertical: 20,
+                  ), //입력창 가장자리간격
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -77,10 +113,39 @@ class TodoList extends StatelessWidget {
                     ],
                   ),
                   children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width*0.8,
-                      height: MediaQuery.of(context).size.height*0.6,
-                    )
+                    Divider(),
+                    TextFormField(
+                      controller: todoTitleController,
+                      style: TextStyle(),
+                      autofocus: true,
+                      decoration: InputDecoration(
+                        hintText: "eg. exercise",
+                        // hintStyel: TextStyle(color: Colors.white70),
+                        border: InputBorder.none,
+                      ),
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      height: 50, //MediaQuery.of(context).size.height * 0.6,
+                      child: TextButton(
+                        onPressed: () {
+                          if(todoTitleController.text.isNotEmpty){
+                            print(todoTitleController.text);
+                            Navigator.pop(context);
+                          }
+                        },
+                        child: Text(
+                          "Add",
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                        style: TextButton.styleFrom(
+                          backgroundColor: Theme.of(context).primaryColor,
+                          // textStyle: TextStyle(color:Colors.white,),
+                        ),
+                      ),
+                    ),
                   ],
                 );
               });
