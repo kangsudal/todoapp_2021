@@ -7,6 +7,7 @@ class TodoList extends StatefulWidget {
 
 class _TodoListState extends State<TodoList> {
   bool isComplete = false;
+  TextEditingController todoTitleController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -102,6 +103,7 @@ class _TodoListState extends State<TodoList> {
                   children: [
                     Divider(),
                     TextFormField(
+                      controller: todoTitleController,
                       style: TextStyle(),
                       autofocus: true,
                       decoration: InputDecoration(
@@ -114,7 +116,11 @@ class _TodoListState extends State<TodoList> {
                       width: MediaQuery.of(context).size.width * 0.8,
                       height: 50, //MediaQuery.of(context).size.height * 0.6,
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          if(todoTitleController.text.isNotEmpty){
+                            print(todoTitleController.text);
+                          }
+                        },
                         child: Text(
                           "Add",
                           style: TextStyle(
