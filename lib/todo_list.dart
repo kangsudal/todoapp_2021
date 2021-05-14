@@ -29,31 +29,43 @@ class _TodoListState extends State<TodoList> {
               SizedBox(height: 20),
               ListView.separated(
                 itemBuilder: (context, index) {
-                  return ListTile(
-                    onTap: (){
-                      setState(() {
-                        isComplete = !isComplete;
-                        // print(isComplete);
-                      });
-                    },
-                    leading: Container(
-                      padding: EdgeInsets.all(2),
-                      height: 30,
-                      width: 30,
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).primaryColor,
-                        shape: BoxShape.circle,
-                      ),
-                      child: isComplete?
-                      Icon(
-                        Icons.check,
-                        color: Colors.white,
-                      ):Container(),
+                  return Dismissible(
+                    key: Key(index.toString(),),
+                    background: Container(
+                      padding: EdgeInsets.only(left: 20),
+                      alignment: Alignment.centerLeft,
+                      child: Icon(Icons.delete),
+                      color: Colors.orangeAccent,
                     ),
-                    title: Text(
-                      "Todo title",
-                      style: TextStyle(
-                        color: Colors.white,
+                    onDismissed: (direction){
+                      print("removed");
+                    },
+                    child: ListTile(
+                      onTap: (){
+                        setState(() {
+                          isComplete = !isComplete;
+                          // print(isComplete);
+                        });
+                      },
+                      leading: Container(
+                        padding: EdgeInsets.all(2),
+                        height: 30,
+                        width: 30,
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).primaryColor,
+                          shape: BoxShape.circle,
+                        ),
+                        child: isComplete?
+                        Icon(
+                          Icons.check,
+                          color: Colors.white,
+                        ):Container(),
+                      ),
+                      title: Text(
+                        "Todo title",
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   );
