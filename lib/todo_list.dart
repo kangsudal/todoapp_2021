@@ -9,7 +9,7 @@ class TodoList extends StatefulWidget {
 }
 
 class _TodoListState extends State<TodoList> {
-  bool isComplete = false;
+  // bool isComplete = false;
   TextEditingController todoTitleController = TextEditingController();
 
   @override
@@ -53,10 +53,11 @@ class _TodoListState extends State<TodoList> {
                         },
                         child: ListTile(
                           onTap: (){
-                            setState(() {
-                              isComplete = !isComplete;
-                              // print(isComplete);
-                            });
+                            DatabaseService().completeTask(todos[index].uid); //collection의 uid에 해당한 데이터를 true로 update
+                            // setState(() {
+                            //   isComplete = !isComplete;
+                            //   // print(isComplete);
+                            // });
                           },
                           leading: Container(
                             padding: EdgeInsets.all(2),
@@ -66,7 +67,7 @@ class _TodoListState extends State<TodoList> {
                               color: Theme.of(context).primaryColor,
                               shape: BoxShape.circle,
                             ),
-                            child: isComplete?
+                            child: todos[index].isComplete ?
                             Icon(
                               Icons.check,
                               color: Colors.white,
