@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app/services/database_services.dart';
 
 class TodoList extends StatefulWidget {
   @override
@@ -128,9 +129,10 @@ class _TodoListState extends State<TodoList> {
                       width: MediaQuery.of(context).size.width * 0.8,
                       height: 50, //MediaQuery.of(context).size.height * 0.6,
                       child: TextButton(
-                        onPressed: () {
+                        onPressed: () async{
                           if(todoTitleController.text.isNotEmpty){
                             print(todoTitleController.text);
+                            await DatabaseService().createNewTodo(todoTitleController.text.trim()); //핵심~!!
                             Navigator.pop(context);
                           }
                         },
