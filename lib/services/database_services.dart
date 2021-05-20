@@ -32,4 +32,8 @@ class DatabaseService {
   Stream<List<Todo>> listTodos(){
     return todosCollection.snapshots().map((event) => todoFromFirestore(event));
   }
+
+  Future removeTodo(uid) async{
+    await todosCollection.doc(uid).delete();
+  }
 }

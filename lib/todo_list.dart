@@ -48,8 +48,8 @@ class _TodoListState extends State<TodoList> {
                           child: Icon(Icons.delete),
                           color: Colors.orangeAccent,
                         ),
-                        onDismissed: (direction){
-                          print("removed");
+                        onDismissed: (direction) async{
+                          await DatabaseService().removeTodo(todos[index].uid); //collection에서 삭제
                         },
                         child: ListTile(
                           onTap: (){
