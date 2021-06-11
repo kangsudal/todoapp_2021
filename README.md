@@ -1,16 +1,12 @@
 # todo_app
 
-TechHover Studio's Todo App study
+Flutter에서 firebase CRUD 사용법을 연습하기위해 시작
 
-## Getting Started
+## 개선할 부분
+ 스크롤되게
+ add 할때 전에 썼던 글씨 지워지게
+ 체크실수로했을때 풀 수 있게
+ dismissed 에러
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 참고영상
+https://youtu.be/yx8p_0xJzf0
